@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>For u 🎂</title>
+        <link rel="stylesheet" href="style.css" />
+        <!-- lib -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Gaegu&family=Montez&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+        <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    </head>
+    <body>
+        <div id="container">
+            <div class="photo-container" style="display: none">
+                <div class="photo" id="photo1">
+                    <img src="resource/img/1.jpg" alt="Image 1" />
+                </div>
+                <div class="photo" id="photo2">
+                    <img src="resource/img/2.gif" alt="Image 2" />
+                </div>
+                <div class="photo" id="photo3">
+                    <img src="resource/img/3.jpg" alt="Image 3" />
+                </div>
+                <div class="photo" id="photo4">
+                    <img src="resource/img/4.gif" alt="Image 4" />
+                </div>
+            </div>
+
+            <div class="content" style="display: none">
+                <h1>Happy <span>14th</span> Birthday 🎉</h1>
+                <h2>Ohto Ai</h2>
+                <p>I Wish your day be filled with happiness😁</p>
+            </div>
+
+            <div class="wish">
+                <div class="card" style="display: none">
+                    <h1>Happy Birthday!</h1>
+                    <div class="typing-text"></div>
+                </div>
+
+                <div id="disqus_thread" style="display: none"></div>
+                <script>
+                    /**
+                     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+                    /*
+                        var disqus_config = function () {
+                        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                        };
+                        */
+                    (function () {
+                        // DON'T EDIT BELOW THIS LINE
+                        var d = document,
+                            s = d.createElement("script");
+                        s.src = "https://wedding-wltqdls3qw.disqus.com/embed.js";
+                        s.setAttribute("data-timestamp", +new Date());
+                        (d.head || d.body).appendChild(s);
+                    })();
+                </script>
+                <noscript>
+                    Please enable JavaScript to view the
+                    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript
+                >
+            </div>
+
+            <div class="hint" style="display: none">Hint: Click to trigger fireworks!</div>
+
+            <!-- btn -->
+            <button id="lampu" class="btn-bottom">TURN OFF <i class="bi bi-lightbulb-off"></i></button>
+            <button id="wish" class="btn-bottom hidden"></button>
+            <button id="fireworks" class="btn-bottom hidden"></button>
+            <button id="stop" class="btn-bottom hidden"></button>
+            <!-- btn end -->
+        </div>
+        <!-- audio section start -->
+        <audio id="song" src="resource/audio/hbd.mp3" loop></audio>
+        <!-- audio section end -->
+
+        <!-- lib & js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/fireworks-js@2.x/dist/index.umd.js"></script>
+
+        <script>
+            const lampu = document.querySelector("#lampu");
+            const wish = document.querySelector("#wish");
+            const fireworks = document.querySelector("#fireworks");
+            const stop = document.querySelector("#stop");
+            const song = document.querySelector("#song");
+            const content = document.querySelector(".content");
+            const photoContainer = document.querySelector(".photo-container");
+            const hint = document.querySelector(".hint");
+            const card = document.querySelector(".card");
+            const disqus = document.querySelector("#disqus_thread");
+            const container = document.body;
+
+            const fireworks2 = new Fireworks.default(container, {
+                autoresize: false,
+                mouse: {
+                    click: true,
+                    move: false,
+                    max: 2,
+                },
+                sound: {
+                    enabled: true,
+                    files: ["resource/audio/explosion0.mp3", "resource/audio/explosion1.mp3", "resource/audio/explosion2.mp3"],
+                    volume: {
+                        min: 10,
+                        max: 12,
+                    },
+                },
+                lineWidth: {
+                    explosion: {
+                        min: 5,
+                        max: 10,
+                    },
+                },
+            });
+
+            lampu.onclick = function () {
+                changeBtn(wish, "white", "black", "Wish✨", "#121212");
+
+                lampu.classList.add("hidden");
+                wish.classList.remove("hidden");
+                wish.classList.add("fadein7s");
+
+                // wish.classList.add("visible");
+                song.play();
+                song.volume = 0.6;
+                content.style.display = "flex";
+                photoContainer.style.display = "flex";
+            };
+
+            wish.onclick = function () {
+                changeBtn(fireworks, "black", "gold", "FireWorks🎆", "white");
+
+                wish.classList.add("hidden");
+                fireworks.classList.remove("hidden");
+                fireworks.classList.add("fadein7s");
+                photoContainer.classList.add("hidden");
+
+                content.style.display = "none";
+                card.style.display = "block";
+                disqus.style.display = "block";
+            };
+
+            fireworks.onclick = function () {
+                changeBtn(stop, "white", "black", "stop", "black");
+                hint.style.display = "block";
+                card.style.display = "none";
+
+                stop.classList.add("hidden");
+                fireworks.classList.add("hidden");
+                disqus.style.display = "none";
+
+                song.pause();
+                fireworks2.start();
+            };
+
+            function changeBtn(el1, bg, color, content, body) {
+                el1.style.backgroundColor = bg;
+                el1.style.color = `${color}`;
+                el1.textContent = `${content}`;
+                document.body.style.backgroundColor = `${body}`;
+            }
+        </script>
+        <script>
+            anime({
+                targets: ".content", // Elemen yang ditargetkan
+                translateY: [-200, 0],
+                scale: [0.2, 1.2], // Gerakan dari bawah ke posisi awal
+                opacity: [0, 1], // Efek fade-in
+                // delay: anime.stagger(200), // Penundaan antar elemen
+                duration: 3000, // Durasi animasi dalam milidetik
+                // easing: "easeOutElastic(1, .8)", // Kurva animasi yang halus
+            });
+        </script>
+        <script>
+            const options = {
+                strings: [
+                    "Enjoy your big day!",
+                    "Celebrate big today!",
+                    "Have fun today!",
+                    "Make it a great day!",
+                    "Cheers to your day!",
+                    "Enjoy every moment!",
+                    "Live it up today!",
+                    "Have an awesome day!",
+                    "Make today unforgettable!",
+                    "Enjoy your celebration!",
+                ],
+                typeSpeed: 100, // Kecepatan mengetik
+                backSpeed: 30, // Kecepatan menghapus
+                backDelay: 1000, // Jeda sebelum teks dihapus
+                startDelay: 500,
+                loop: true, // Efek loop
+                showCursor: true, // Menampilkan kursor
+                cursorChar: "⭐", // Karakter kursor
+            };
+
+            // Inisialisasi Typed.js
+            const typed = new Typed(".typing-text", options);
+        </script>
+    </body>
+</html>

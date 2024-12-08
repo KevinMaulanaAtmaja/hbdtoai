@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Birthday Cake with Anime.js</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+                background-color: #121212;
+            }
+
+            svg {
+                width: 250px;
+                height: 350px;
+            }
+
+            .cake {
+                fill: #ff5722;
+            }
+
+            .flame {
+                fill: #ffcc00;
+            }
+
+            .number {
+                fill: #ffd700;
+                font-family: Arial, sans-serif;
+                font-weight: bold;
+                text-anchor: middle;
+            }
+
+            .text {
+                fill: white;
+                font-family: Arial, sans-serif;
+                font-weight: bold;
+                text-anchor: middle;
+            }
+        </style>
+    </head>
+    <body>
+        <svg id="birthday-cake" viewBox="0 0 200 300">
+            <!-- Base layer -->
+            <rect class="cake" x="40" y="200" width="120" height="40" rx="5" ry="5" opacity="0"></rect>
+            <!-- Second layer -->
+            <rect class="cake" x="60" y="160" width="80" height="40" rx="5" ry="5" opacity="0"></rect>
+            <!-- Number as Candle -->
+            <text class="number" x="100" y="140" font-size="30" opacity="0">19</text>
+            <!-- Flames -->
+            <circle class="flame" cx="90" cy="130" r="4" opacity="0"></circle>
+            <circle class="flame" cx="110" cy="130" r="4" opacity="0"></circle>
+            <!-- Text -->
+            <text class="text" x="100" y="130" font-size="20" opacity="0">Happy Birthday!</text>
+        </svg>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+        <script>
+            // Animasi menggunakan Anime.js
+            anime({
+                targets: ".cake",
+                opacity: [0, 1],
+                translateY: [50, 0],
+                duration: 800,
+                delay: anime.stagger(300),
+                easing: "easeOutQuad",
+            });
+
+            anime({
+                targets: ".number",
+                opacity: [0, 1],
+                scale: [0.5, 1],
+                translateY: [-20, 0],
+                duration: 1000,
+                delay: 1000,
+                easing: "easeOutElastic(1, .8)",
+            });
+
+            anime({
+                targets: ".flame",
+                opacity: [0, 1],
+                scale: [0, 1],
+                duration: 600,
+                delay: anime.stagger(200, { start: 2000 }),
+                easing: "easeOutBack",
+            });
+
+            anime({
+                targets: ".text",
+                opacity: [0, 1],
+                translateY: [-20, 0],
+                duration: 1000,
+                delay: 3000,
+                easing: "easeOutQuad",
+            });
+        </script>
+    </body>
+</html>

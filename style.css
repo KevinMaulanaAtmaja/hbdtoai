@@ -1,0 +1,288 @@
+:root {
+    --main-color: #4a90e2;
+    --second-color: #f1c40f;
+}
+
+/* fonts */
+.montez-regular {
+    font-family: "Montez", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+.gaegu-regular {
+    font-family: "Gaegu", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    /* background-color: var(--second-color); */
+    font-family: Gaegu;
+    height: 90vh;
+    overflow: hidden;
+}
+
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* page1 */
+.content {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    line-height: 1px;
+    color: #f9f9f9;
+    /* margin: 0; */
+}
+.content h1 {
+    font-size: 4rem;
+    font-family: Montez;
+    line-height: 10px;
+}
+.content h2 {
+    font-size: 3.6rem;
+    font-family: Gaegu;
+    /* font-style: underline; */
+}
+.content p {
+    font-family: Gaegu;
+    font-size: 1.6rem;
+}
+.content span {
+    position: relative;
+}
+
+.content span::before {
+    margin: 0 -0.3em;
+    padding: 0.1em 0.4em;
+    border-radius: 0.8em 0.3em;
+    background: transparent;
+    content: "";
+    position: absolute;
+    top: 20%;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    background-color: var(--second-color);
+    transform: rotate(-15deg);
+    transform-origin: center center;
+    z-index: -1;
+}
+
+.btn-bottom {
+    position: absolute;
+    transform: translateX(-50%);
+    left: 50%;
+    bottom: 8%;
+    padding: 8px 16px;
+    background-color: var(--main-color);
+    border-radius: 5px;
+    border: none;
+    color: #f9f9f9;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: Gaegu;
+    font-size: 2rem;
+}
+
+/* photo */
+.photo {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 8px;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.7s ease-in-out;
+    cursor: zoom-in;
+}
+
+.photo img {
+    width: 80%;
+    height: 80%;
+    object-fit: cover;
+    border: 10px solid #f9f9f9;
+}
+
+.photo:hover {
+    transform: scale(1.4);
+}
+
+#photo1 {
+    position: absolute;
+    top: 15%;
+    left: 10%;
+    rotate: -20deg;
+}
+#photo2 {
+    position: absolute;
+    bottom: 15%;
+    left: 15%;
+    rotate: 20deg;
+}
+#photo3 {
+    position: absolute;
+    top: 15%;
+    right: 10%;
+    rotate: 20deg;
+}
+#photo4 {
+    position: absolute;
+    bottom: 15%;
+    right: 15%;
+    rotate: -20deg;
+}
+
+/* page2 */
+.wish {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+/* card */
+.card {
+    margin: 5%;
+    width: 500px;
+    height: 60vh;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: #fff;
+    background-image: url(resource/img/paper.jpg);
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+}
+
+.card h1 {
+    font-size: 2.2rem;
+    color: dodgerblue;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.typing-text {
+    font-size: 1.5rem;
+    display: inline-block;
+    white-space: nowrap;
+    /* vertical-align: top; */
+    /* color: lightcoral; */
+    color: deepskyblue;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+}
+
+#disqus_thread {
+    scale: 0.9;
+    width: 60vw;
+    height: 500px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.hint {
+    font-size: 1.2rem;
+    color: white;
+    font-family: Gaegu;
+    z-index: -1;
+    opacity: 0.5;
+    user-select: none;
+    touch-action: manipulation;
+}
+
+/* fade */
+.fadein7s {
+    animation: fadein 7s ease-in-out;
+    /* animation-delay: 1s; */
+    /* display: block; */
+}
+
+@keyframes fadein {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 576px) {
+    html {
+        font-size: 60%;
+        overflow-x: hidden;
+    }
+
+    .content {
+        margin-top: 57%;
+    }
+    .content h1 {
+        font-size: 3.3rem;
+    }
+
+    .wish {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        margin-top: 10%;
+        height: 20vh;
+    }
+
+    .card {
+        font-size: 2.6rem;
+    }
+    .card h1 {
+        font-size: 3.2rem;
+    }
+    .card .typing-text {
+        font-size: 2.6rem;
+    }
+
+    .photo {
+        z-index: 3;
+    }
+
+    #photo1 {
+        width: 50%;
+        top: 5%;
+        left: 5%;
+    }
+    #photo2 {
+        width: 50%;
+        top: 60%;
+        left: 5%;
+    }
+    #photo3 {
+        width: 50%;
+        top: 5%;
+        right: 5%;
+    }
+    #photo4 {
+        width: 50%;
+        top: 60%;
+        right: 5%;
+    }
+
+    #disqus_thread {
+        width: 100vw;
+        height: 500px;
+        scale: 0.8;
+    }
+}
